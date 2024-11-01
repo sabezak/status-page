@@ -9,16 +9,13 @@ const Callback = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // После редиректа автоматически проверим, вошел ли пользователь
         Auth.currentAuthenticatedUser()
-            .then((user) => {
-                console.log('User authenticated:', user);
-                // Перенаправляем на главную страницу или защищенную страницу
+            .then(() => {
+                console.log('User authenticated');
                 router.push("/dashboard");
             })
             .catch((err) => {
-                console.log('User not signed in');
-                // Перенаправление на страницу входа, если авторизация не удалась
+                console.log('User not signed in', err);
                 router.push('/');
             });
     }, []);
