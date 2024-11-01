@@ -74,6 +74,12 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
+        env:
+          NEXT_PUBLIC_USER_POOL_ID: ${{ secrets.USER_POOL_ID }}
+          NEXT_PUBLIC_USER_POOL_WEBCLIENT_ID: ${{ secrets.USER_POOL_WEBCLIENT_ID }}
+          NEXT_PUBLIC_OAUTH_REDIRECT_SIGNIN: ${{ secrets.OAUTH_REDIRECT_SIGNIN }}
+          NEXT_PUBLIC_OAUTH_REDIRECT_SIGNOUT: ${{ secrets.OAUTH_REDIRECT_SIGNOUT }}
+          NEXT_PUBLIC_API_GATEWAY_HOST: ${{ secrets.API_GATEWAY_HOST }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
