@@ -15,7 +15,7 @@
     "again": "^0.0.1",
     "aws-amplify": "^5.3.25",
     "dayjs": "1.11.13",
-    "next": "14.2.14",
+    "next": "15.0.2",
     "react": "18",
     "react-dom": "18",
     "react-markdown": "9.0.1",
