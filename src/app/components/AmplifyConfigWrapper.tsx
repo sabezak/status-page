@@ -4,24 +4,23 @@ import { Amplify } from "aws-amplify";
 
 Amplify.configure({
     Auth: {
-        region: 'us-east-2',  // Укажите регион вашего Cognito User Pool
-        userPoolId: 'us-east-2_2lfbiFKcr',  // Ваш Cognito User Pool ID
-        userPoolWebClientId: '12tccjqtl0qcm2tufepgeps580',  // Client ID приложения в Cognito
+        region: 'us-east-2',
+        // userPoolId: 'us-east-2_2lfbiFKcr',
+        userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
+        // userPoolWebClientId: '12tccjqtl0qcm2tufepgeps580',
+        userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_WEBCLIENT_ID,
         oauth: {
-            domain: 'dagster-sandbox-prod.auth.us-east-2.amazoncognito.com',
+            // domain: 'dagster-sandbox-prod.auth.us-east-2.amazoncognito.com',
+            domain: process.env.NEXT_PUBLIC_OAUTH_REDIRECT_SIGNIN,
             scope: ['email', 'openid'],
-            redirectSignIn: 'https://sabezak.github.io/status-page/callback',
-            redirectSignOut: 'https://sabezak.github.io/status-page',
+            // redirectSignIn: 'https://sabezak.github.io/status-page/callback',
+            redirectSignIn: process.env.NEXT_PUBLIC_OAUTH_REDIRECT_SIGNIN,
+            // redirectSignOut: 'https://sabezak.github.io/status-page',
+            redirectSignOut: process.env.NEXT_PUBLIC_OAUTH_REDIRECT_SIGNOUT,
             responseType: 'code',  // Используем Authorization Code Flow
         },
     },
-    Logging: {    level: 'DEBUG',}
 });
-
-// Enable debug logging
-// window.LOG_LEVEL = 'DEBUG';
-
-// Amplify.Logger.LOG_LEVEL = 'DEBUG';
 
 const AmplifyConfigWrapper = ({children}: any) => {
     return <>{children}</>;

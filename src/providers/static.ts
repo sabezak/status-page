@@ -19,7 +19,7 @@ export const staticProvider: Provider = {
     getComponents: async () => {
         const userCreds = await Auth.currentAuthenticatedUser()
         let response = await fetch(
-            "https://49vmkl3h1g.execute-api.us-east-2.amazonaws.com/",
+            process.env.NEXT_PUBLIC_API_GATEWAY_HOST,
             {
                 method: "GET",
                 headers: {
