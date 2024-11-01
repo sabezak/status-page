@@ -11,7 +11,7 @@ Amplify.configure({
         userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_WEBCLIENT_ID,
         oauth: {
             // domain: 'dagster-sandbox-prod.auth.us-east-2.amazoncognito.com',
-            domain: process.env.NEXT_PUBLIC_OAUTH_REDIRECT_SIGNIN,
+            domain: process.env.NEXT_PUBLIC_OAUTH_DOMAIN,
             scope: ['email', 'openid'],
             // redirectSignIn: 'https://sabezak.github.io/status-page/callback',
             redirectSignIn: process.env.NEXT_PUBLIC_OAUTH_REDIRECT_SIGNIN,
