@@ -1,16 +1,5 @@
-import {IncidentType, BaseComponentType, Provider} from "@/api/types";
+import {IncidentType, Provider} from "@/api/types";
 import {Auth} from "aws-amplify";
-
-const statuses: BaseComponentType[] = [
-    {
-        name: "davinci",
-        status: "majorOutage"
-    },
-    {
-        name: "syberrycom",
-        status: "operational"
-    }
-];
 
 /**
  * You may use this as inspriation for a custom provider.
@@ -23,7 +12,7 @@ export const staticProvider: Provider = {
             {
                 method: "GET",
                 headers: {
-                "Authorization": "Bearer " + userCreds.signInUserSession?.idToken.jwtToken.toString(),
+                    "Authorization": "Bearer " + userCreds.signInUserSession?.idToken.jwtToken.toString(),
                 },
             }
         );
@@ -35,18 +24,15 @@ export const staticProvider: Provider = {
             alert("Error HTTP: " + response.status + "\n" + response.statusText);
         }
 
-        const finalStatuses = statuses.map((status) => {
-            let updatedStatus = currentStatuses.statuses.find((newStatus: BaseComponentType) => newStatus.name === status.name);
-            if (updatedStatus) {
-                return {
-                    ...status,
-                    status: updatedStatus.status,
+        if (currentStatuses === undefined || currentStatuses.length == 0) {
+            return [
+                {
+                    name: "organization",
+                    status: "majorOutage"
                 }
-            }
-            return status
-        });
-
-        return finalStatuses;
+            ]
+        }
+        return currentStatuses.statuses;
 
     },
     getIncidents: () => [
