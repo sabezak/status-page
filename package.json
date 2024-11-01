@@ -13,7 +13,7 @@
     "@aws-amplify/ui-react": "^5.3.3",
     "@octokit/rest": "21.0.2",
     "again": "^0.0.1",
-    "aws-amplify": "^5.3.25",
+    "aws-amplify": "^5.3.26",
     "dayjs": "1.11.13",
     "next": "14.2.14",
     "react": "18",
